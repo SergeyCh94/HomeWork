@@ -4,12 +4,18 @@ public class Main {
     public static void main(String[] args) {
         Author author1 = new Author("Уильям", "Шекспир");
         Author author2 = new Author("Джордж", "Байрон");
+        Author author3 = new Author("Уильям", "Шекспир");
         Book book1 = new Book("Ромео и Джульетта", author1, 1597);
         Book book2 = new Book("Дон Жуан", author2, 1787);
+        Book book3 = new Book("Ромео и Джульетта", author1, 1597);
         book1.setYearPublication(1597);
 
         System.out.println(book1);
         System.out.println(book2);
+        System.out.println(book1.equals(book2)); //false
+        System.out.println(book1.equals(book3)); //true
+        System.out.println(author1.equals(author2)); //false
+        System.out.println(author1.equals(author3)); //true
     }
 
     public static class Book {
@@ -46,11 +52,11 @@ public class Main {
 
         @Override
         public boolean equals(Object other){
-            if (this.getTitle() != getTitle()){
+            if (this.getTitle() != getTitle()) {
                 return false;
-            } else {
-                return true;
             }
+            Book book = (Book) other;
+            return title.equals(book.title);
         }
 
         @Override
@@ -80,6 +86,20 @@ public class Main {
         @Override
         public String toString(){
             return authorName + " " + authorSecondName;
+        }
+
+        @Override
+        public boolean equals(Object other){
+            if (this.getAuthorName() != getAuthorName()){
+                return false;
+            }
+            Author author = (Author) other;
+            return authorName.equals(author.authorName);
+        }
+
+        @Override
+        public int hashCode() {
+            return java.util.Objects.hash(authorName,authorSecondName);
         }
 
     }
