@@ -49,14 +49,14 @@ public class Main {
         public String toString() {
             return "Заголовок: " + title + "\n" + "Автор: " + name + "\n" + "Год публикации: " + yearPublication + "\n";
         }
-
         @Override
         public boolean equals(Object other){
-            if (this.getTitle() != getTitle()) {
+            Book book = (Book) other;
+            if (this.getTitle().equals(book.getTitle())) {
+                return true;
+            } else {
                 return false;
             }
-            Book book = (Book) other;
-            return title.equals(book.title);
         }
 
         @Override
@@ -89,12 +89,13 @@ public class Main {
         }
 
         @Override
-        public boolean equals(Object other){
-            if (this.getAuthorName() != getAuthorName()){
+        public boolean equals(Object other) {
+            Author author = (Author) other;
+            if (this.getAuthorName().equals(((Author) other).getAuthorName())) {
+                return true;
+            } else {
                 return false;
             }
-            Author author = (Author) other;
-            return authorName.equals(author.authorName);
         }
 
         @Override
